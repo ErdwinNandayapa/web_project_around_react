@@ -31,7 +31,7 @@ function Main() {
         </div>
         <button
           className="profile__button-add"
-          onClick={handleEditProfileClick}
+          onClick={handleAddPlaceClick}
         ></button>
       </section>
       <section className="cards"></section>

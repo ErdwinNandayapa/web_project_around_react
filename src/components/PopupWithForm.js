@@ -1,40 +1,31 @@
-function PopupWithForm() {
+import React from "react";
+
+function PopupWithForm({
+  name,
+  title,
+  content,
+  container,
+  form,
+  filset,
+  children,
+  buttonName,
+  buttonClass,
+}) {
   return (
-    <div className="popup">
-      <div className="popup__content">
-        <div className="popup__container">
+    <div className={`popup1 popup__${name}`}>
+      <div className={`popup__content ${content} `}>
+        <div className={`popup__container ${container}`}>
           <button className="button popup__button-typeclose"></button>
-          <span className="popup__title">Edit profile</span>
-          <form className="popup__form">
-            <fieldset className="popup__fieldset">
-              <input
-                type="text"
-                name="input-name"
-                id="input-name"
-                required
-                minLength="2"
-                maxLength="40"
-                className="popup__input popup__input-name"
-                placeholder="Name"
-              />
-              <p className="popup__input-span" id="input-name-error"></p>
-              <input
-                type="text"
-                name="input-job"
-                id="input-job"
-                className="popup__input popup__input-profesion"
-                placeholder="Profession"
-                required
-                minLength="2"
-                maxLength="200"
-              />
-              <p className="popup__error-profesion" id="input-job-error"></p>
+          <span className="popup__title">{title}</span>
+          <form className={`popup__form ${form} `}>
+            <fieldset className={`popup__fieldset ${filset} `}>
+              {children}
             </fieldset>
             <button
-              className="button popup__button-typesave popup__button"
+              className={`button popup__button-typesave popup__button ${buttonClass}`}
               id="popup__profile"
             >
-              Save
+              {buttonName}
             </button>
           </form>
         </div>
@@ -42,3 +33,5 @@ function PopupWithForm() {
     </div>
   );
 }
+
+export default PopupWithForm;
