@@ -6,7 +6,7 @@ import Footer from "./Footer";
 function App() {
   return (
     <>
-      <body class="body">
+      <div className="body">
         <Header />
         <Main />
         <Footer />
@@ -23,8 +23,8 @@ function App() {
                     name="input-name"
                     id="input-name"
                     required
-                    minlength="2"
-                    maxlength="40"
+                    minLength="2"
+                    maxLength="40"
                     className="popup__input popup__input-name"
                     placeholder="Name"
                   />
@@ -36,8 +36,8 @@ function App() {
                     className="popup__input popup__input-profesion"
                     placeholder="Profession"
                     required
-                    minlength="2"
-                    maxlength="200"
+                    minLength="2"
+                    maxLength="200"
                   />
                   <p
                     className="popup__error-profesion"
@@ -67,8 +67,8 @@ function App() {
                     name="input-nameadd"
                     id="input-nameimg"
                     required
-                    minlength="2"
-                    maxlength="30"
+                    minLength="2"
+                    maxLength="30"
                     className="popup__input popup__input-name popup__input-name-add"
                     placeholder="Title"
                   />
@@ -131,8 +131,8 @@ function App() {
                     name="input-name"
                     id="input-nameE"
                     required
-                    minlength="2"
-                    maxlength="40"
+                    minLength="2"
+                    maxLength="40"
                     className="popup__input popup__input-name"
                     placeholder="Name"
                   />
@@ -144,8 +144,8 @@ function App() {
                     className="popup__input popup__input-profesion"
                     placeholder="Profession"
                     required
-                    minlength="2"
-                    maxlength="200"
+                    minLength="2"
+                    maxLength="200"
                   />
                   <p
                     className="popup__error-profesion"
@@ -207,7 +207,7 @@ function App() {
             </div>
           </div>
         </div>
-      </body>
+      </div>
     </>
   );
 }
