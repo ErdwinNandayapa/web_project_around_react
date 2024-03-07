@@ -1,0 +1,26 @@
+.footer {
+  max-width: 318px;
+  margin-top: 67px;
+  margin-bottom: 60px;
+
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.footer__text {
+  text-decoration: none;
+  color: #545454;
+}
+@media screen and (max-width: 768px) {
+  .footer__text {
+    margin-left: 10px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .footer__text {
+    margin-left: 24px;
+  }
+}
