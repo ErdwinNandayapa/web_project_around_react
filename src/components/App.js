@@ -1,37 +1,14 @@
+import Header from "./Header";
+import Main from "./Main";
+import Footer from "./Footer";
+
 function App() {
   return (
     <>
       <body class="body">
-        <header className="header">
-          <img className="header__logo" src="" alt="Around" />
-        </header>
-        <main className="container">
-          <section className="profile">
-            <div className="profile__overlay">
-              <img className="profile__avatar" src="." alt="Around" />
-              <button className="profile__buttonAvatar"></button>
-            </div>
-            <div className="profile__edit">
-              <div className="profile__container">
-                <h1 className="profile__name"></h1>
-                <button className="profile__button-edit"></button>
-              </div>
-              <p className="profile__profession"></p>
-            </div>
-            <button className="profile__button-add"></button>
-          </section>
-          <section className="cards"></section>
-        </main>
-        <footer className="footer">
-          <a
-            href="https://github.com/ErdwinNandayapa"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="footer__text"
-          >
-            &copy;2024 Erdwin Nandayapa
-          </a>
-        </footer>
+        <Header />
+        <Main />
+        <Footer />
 
         <div className="popup" id="popup__edit">
           <div className="popup__content popup__edit1">
