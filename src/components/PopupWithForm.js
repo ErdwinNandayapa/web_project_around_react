@@ -12,8 +12,8 @@ function PopupWithForm() {
                 name="input-name"
                 id="input-name"
                 required
-                minlength="2"
-                maxlength="40"
+                minLength="2"
+                maxLength="40"
                 className="popup__input popup__input-name"
                 placeholder="Name"
               />
@@ -25,8 +25,8 @@ function PopupWithForm() {
                 className="popup__input popup__input-profesion"
                 placeholder="Profession"
                 required
-                minlength="2"
-                maxlength="200"
+                minLength="2"
+                maxLength="200"
               />
               <p className="popup__error-profesion" id="input-job-error"></p>
             </fieldset>
