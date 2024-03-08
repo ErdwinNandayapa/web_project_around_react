@@ -1,14 +1,4 @@
-function Main() {
-  const handleEditAvatarClick = () => {
-    document.querySelector("#popup__avatar").classList.add("popup_open");
-  };
-  const handleEditProfileClick = () => {
-    document.querySelector("#popup__edit").classList.add("popup_open");
-  };
-  const handleAddPlaceClick = () => {
-    document.querySelector("#popup__add").classList.add("popup_open");
-  };
-
+function Main({ onEditAvatarClick, onEditProfileClick, onAddPlaceClick }) {
   return (
     <main className="container">
       <section className="profile">
@@ -16,7 +6,7 @@ function Main() {
           <img className="profile__avatar" src="" alt="Around" />
           <button
             className="profile__buttonAvatar"
-            onClick={handleEditAvatarClick}
+            onClick={onEditAvatarClick}
           ></button>
         </div>
         <div className="profile__edit">
@@ -24,14 +14,14 @@ function Main() {
             <h1 className="profile__name"></h1>
             <button
               className="profile__button-edit"
-              onClick={handleEditProfileClick}
+              onClick={onEditProfileClick}
             ></button>
           </div>
           <p className="profile__profession"></p>
         </div>
         <button
           className="profile__button-add"
-          onClick={handleAddPlaceClick}
+          onClick={onAddPlaceClick}
         ></button>
       </section>
       <section className="cards"></section>

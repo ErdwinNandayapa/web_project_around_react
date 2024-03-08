@@ -1,6 +1,7 @@
 import React from "react";
 
 function PopupWithForm({
+  isOpen,
   name,
   title,
   content,
@@ -10,12 +11,16 @@ function PopupWithForm({
   children,
   buttonName,
   buttonClass,
+  onClose,
 }) {
   return (
-    <div className={`popup1 popup__${name}`}>
+    <div className={`popup popup__${name} ${isOpen ? "popup_open" : ""}`}>
       <div className={`popup__content ${content ? content : ""} `}>
         <div className={`popup__container ${container ? container : ""}`}>
-          <button className="button popup__button-typeclose"></button>
+          <button
+            className="button popup__button-typeclose"
+            onClick={onClose}
+          ></button>
           <span className="popup__title">{title}</span>
           <form className={`popup__form ${form ? form : ""} `}>
             <fieldset className={`popup__fieldset ${filset ? filset : ""} `}>

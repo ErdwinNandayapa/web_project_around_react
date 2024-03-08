@@ -18,17 +18,29 @@ function App() {
   const handleAddPlaceClick = () => {
     setIsAddPlacePopupOpen(true);
   };
+  const closeAllPopups = () => {
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+  };
+
   return (
     <>
       <div className="body">
         <Header />
         <Main
           onEditProfileClick={handleEditProfileClick}
-          oneEditAvatarClick={handleEditAvatarClick}
           onAddPlaceClick={handleAddPlaceClick}
+          onEditAvatarClick={handleEditAvatarClick}
         />
         <Footer />
-        <PopupWithForm name="edit" title="Editar perfil" buttonName="Save">
+        <PopupWithForm
+          name="edit"
+          title="Editar perfil"
+          buttonName="Save"
+          isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
+        >
           <input
             type="text"
             name="input-name"
@@ -52,7 +64,13 @@ function App() {
           />
           <p className="popup__error-profesion" id="input-job-error"></p>
         </PopupWithForm>
-        <PopupWithForm name="add" title="Nuevo lugar" buttonName="Save">
+        <PopupWithForm
+          name="add"
+          title="Nuevo lugar"
+          buttonName="Save"
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+        >
           <input
             type="text"
             name="input-nameadd"
@@ -83,6 +101,8 @@ function App() {
           form="popup__form-avatar"
           filset="popup__fieldsetA"
           buttonName="Save"
+          isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
         >
           <input
             type="url"
