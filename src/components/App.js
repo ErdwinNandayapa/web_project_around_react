@@ -22,7 +22,11 @@ function App() {
     <>
       <div className="body">
         <Header />
-        <Main />
+        <Main
+          onEditProfileClick={handleEditProfileClick}
+          oneEditAvatarClick={handleEditAvatarClick}
+          onAddPlaceClick={handleAddPlaceClick}
+        />
         <Footer />
         <PopupWithForm name="edit" title="Editar perfil" buttonName="Save">
           <input
