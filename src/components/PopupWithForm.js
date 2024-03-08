@@ -13,12 +13,12 @@ function PopupWithForm({
 }) {
   return (
     <div className={`popup1 popup__${name}`}>
-      <div className={`popup__content ${content} `}>
-        <div className={`popup__container ${container}`}>
+      <div className={`popup__content ${content ? content : ""} `}>
+        <div className={`popup__container ${container ? container : ""}`}>
           <button className="button popup__button-typeclose"></button>
           <span className="popup__title">{title}</span>
-          <form className={`popup__form ${form} `}>
-            <fieldset className={`popup__fieldset ${filset} `}>
+          <form className={`popup__form ${form ? form : ""} `}>
+            <fieldset className={`popup__fieldset ${filset ? filset : ""} `}>
               {children}
             </fieldset>
             <button

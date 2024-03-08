@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 
 function App() {
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+
+  const handleEditAvatarClick = () => {
+    setIsEditAvatarPopupOpen(true);
+  };
+  const handleEditProfileClick = () => {
+    setIsEditProfilePopupOpen(true);
+  };
+  const handleAddPlaceClick = () => {
+    setIsAddPlacePopupOpen(true);
+  };
   return (
     <>
       <div className="body">
