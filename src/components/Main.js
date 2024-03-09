@@ -21,7 +21,6 @@ function Main({
           setUserName(res.name || "");
           setUserDescription(res.about || "");
           setUserAvatar(res.avatar || "");
-          console.log(res);
         }
       })
       .catch((error) => {
