@@ -1,9 +1,9 @@
-function Input({ type, id, min, max, required = true, classInput, adicional }) {
+function Input({ type, id, min, max, required = true, classInput }) {
   return (
     <input
       type={type}
       name={`input-${id}`}
-      id={`input-${id}${adicional} `}
+      id={`input-${id} `}
       required={required}
       minLength={min}
       maxLength={max}

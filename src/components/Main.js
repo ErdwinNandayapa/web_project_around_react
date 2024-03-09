@@ -8,7 +8,7 @@ function Main({ onEditAvatarClick, onEditProfileClick, onAddPlaceClick }) {
   const [userAvatar, setUserAvatar] = React.useState("");
   const [useCards, setCards] = React.useState([]);
 
-  React.useEffect(() => {
+  const fetchUserInfo = () => {
     api
       .getUserInfo()
       .then((res) => {
@@ -16,23 +16,30 @@ function Main({ onEditAvatarClick, onEditProfileClick, onAddPlaceClick }) {
           setUserName(res.name || "");
           setUserDescription(res.about || "");
           setUserAvatar(res.avatar || "");
+          console.log(res);
         }
       })
       .catch((error) => {
         console.error("Failed to fetch user info:", error);
       });
+  };
 
+  const fetchInitialCards = () => {
     api
       .getInitialCards()
       .then((res) => {
         if (Array.isArray(res)) {
           setCards(res);
-          console.log(res);
         }
       })
       .catch((error) => {
         console.error("Failed to fetch initial cards:", error);
       });
+  };
+
+  React.useEffect(() => {
+    fetchUserInfo();
+    fetchInitialCards();
   }, []);
 
   return (
