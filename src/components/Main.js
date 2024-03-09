@@ -18,9 +18,9 @@ function Main({
       .getUserInfo()
       .then((res) => {
         if (res) {
-          setUserName(res.name || "");
-          setUserDescription(res.about || "");
-          setUserAvatar(res.avatar || "");
+          setUserName(res?.name);
+          setUserDescription(res?.about);
+          setUserAvatar(res?.avatar);
         }
       })
       .catch((error) => {
@@ -43,6 +43,8 @@ function Main({
 
   React.useEffect(() => {
     fetchUserInfo();
+  }, []);
+  React.useEffect(() => {
     fetchInitialCards();
   }, []);
 
