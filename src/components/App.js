@@ -132,11 +132,7 @@ function App() {
         >
           {" "}
         </PopupWithForm>
-        <ImagePopup
-          card={selectedCard}
-          onclose={closeAllPopups}
-          onCardClick={handleCardClick}
-        />
+        <ImagePopup card={selectedCard} onclose={closeAllPopups} />
       </div>
     </>
   );
