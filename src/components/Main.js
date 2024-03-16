@@ -1,7 +1,7 @@
 import React from "react";
 import { api } from "../utils/Api";
 import Card from "./Card";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function Main({
   onEditAvatarClick,
@@ -9,9 +9,9 @@ function Main({
   onAddPlaceClick,
   onCardClick,
 }) {
-  const [userName, setUserName] = React.useState("");
-  const [userDescription, setUserDescription] = React.useState("");
-  const [userAvatar, setUserAvatar] = React.useState("");
+  const [userName, setUserName] = useState("");
+  const [userDescription, setUserDescription] = useState("");
+  const [userAvatar, setUserAvatar] = useState("");
   const [useCards, setCards] = useState([]);
 
   const fetchUserInfo = () => {
