@@ -1,6 +1,7 @@
 import React from "react";
 import { api } from "../utils/Api";
 import Card from "./Card";
+import { useEffect } from "react";
 
 function Main({
   onEditAvatarClick,
@@ -11,7 +12,7 @@ function Main({
   const [userName, setUserName] = React.useState("");
   const [userDescription, setUserDescription] = React.useState("");
   const [userAvatar, setUserAvatar] = React.useState("");
-  const [useCards, setCards] = React.useState([]);
+  const [useCards, setCards] = useState([]);
 
   const fetchUserInfo = () => {
     api
@@ -41,10 +42,10 @@ function Main({
       });
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetchUserInfo();
   }, []);
-  React.useEffect(() => {
+  useEffect(() => {
     fetchInitialCards();
   }, []);
 
