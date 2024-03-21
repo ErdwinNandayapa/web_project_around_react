@@ -1,7 +1,8 @@
 import React from "react";
 import { api } from "../utils/Api";
 import Card from "./Card";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import CurrentUserContext from "./contexts/CurrentUserContext";
 
 function Main({
   onEditAvatarClick,
@@ -14,20 +15,22 @@ function Main({
   const [userAvatar, setUserAvatar] = useState("");
   const [useCards, setCards] = useState([]);
 
-  const fetchUserInfo = () => {
-    api
-      .getUserInfo()
-      .then((res) => {
-        if (res) {
-          setUserName(res?.name);
-          setUserDescription(res?.about);
-          setUserAvatar(res?.avatar);
-        }
-      })
-      .catch((error) => {
-        console.error("Failed to fetch user info:", error);
-      });
-  };
+  const currentUser = useContext(CurrentUserContext);
+
+  // const fetchUserInfo = () => {
+  //   api
+  //     .getUserInfo()
+  //     .then((res) => {
+  //       if (res) {
+  //         setUserName(res?.name);
+  //         setUserDescription(res?.about);
+  //         setUserAvatar(res?.avatar);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("Failed to fetch user info:", error);
+  //     });
+  // };
 
   const fetchInitialCards = () => {
     api
@@ -42,9 +45,9 @@ function Main({
       });
   };
 
-  useEffect(() => {
-    fetchUserInfo();
-  }, []);
+  // useEffect(() => {
+  //   fetchUserInfo();
+  // }, []);
   useEffect(() => {
     fetchInitialCards();
   }, []);
@@ -53,7 +56,11 @@ function Main({
     <main className="container">
       <section className="profile">
         <div className="profile__overlay">
-          <img className="profile__avatar" src={userAvatar} alt="Around" />
+          <img
+            className="profile__avatar"
+            src={currentUser?.avatar}
+            alt="Avatar"
+          />{" "}
           <button
             className="profile__buttonAvatar"
             onClick={onEditAvatarClick}
@@ -61,13 +68,13 @@ function Main({
         </div>
         <div className="profile__edit">
           <div className="profile__container">
-            <h1 className="profile__name">{userName}</h1>
+            <h1 className="profile__name">{currentUser?.name}</h1>{" "}
             <button
               className="profile__button-edit"
               onClick={onEditProfileClick}
             ></button>
           </div>
-          <p className="profile__profession">{userDescription}</p>
+          <p className="profile__profession">{currentUser?.about}</p>{" "}
         </div>
         <button
           className="profile__button-add"
