@@ -10,9 +10,9 @@ function Main({
   onAddPlaceClick,
   onCardClick,
 }) {
-  const [userName, setUserName] = useState("");
-  const [userDescription, setUserDescription] = useState("");
-  const [userAvatar, setUserAvatar] = useState("");
+  // const [userName, setUserName] = useState("");
+  // const [userDescription, setUserDescription] = useState("");
+  // const [userAvatar, setUserAvatar] = useState("");
   const [useCards, setCards] = useState([]);
 
   const currentUser = useContext(CurrentUserContext);
