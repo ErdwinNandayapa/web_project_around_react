@@ -10,27 +10,26 @@ function Main({
   onAddPlaceClick,
   onCardClick,
 }) {
-  const [useCards, setCards] = useState([]);
+  // const [useCards, setCards] = useState([]);
 
-  const currentUser = useContext(CurrentUserContext);
+  const { currentUser, currentCard: useCards } = useContext(CurrentUserContext);
 
-  const fetchInitialCards = () => {
-    api
-      .getInitialCards()
-      .then((res) => {
-        if (Array.isArray(res)) {
-          setCards(res);
-          console.log(res);
-        }
-      })
-      .catch((error) => {
-        console.error("Failed to fetch initial cards:", error);
-      });
-  };
+  // const fetchInitialCards = () => {
+  //   api
+  //     .getInitialCards()
+  //     .then((res) => {
+  //       if (Array.isArray(res)) {
+  //         setCards(res);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("Failed to fetch initial cards:", error);
+  //     });
+  // };
 
-  useEffect(() => {
-    fetchInitialCards();
-  }, []);
+  // useEffect(() => {
+  //   fetchInitialCards();
+  // }, []);
 
   return (
     <main className="container">

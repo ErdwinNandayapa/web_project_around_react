@@ -58,6 +58,12 @@
   transform: rotate(-15deg);
   background: url(../images/basura.svg) no-repeat;
 }
+.button__delete_visible {
+  display: none;
+}
+.button__like_visible {
+  display: none;
+}
 
 @media screen and (max-width: 768px) {
   .button_close {

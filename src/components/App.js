@@ -21,13 +21,23 @@ function App() {
       .then((res) => {
         if (res) {
           setCurrentUser(res);
-          console.log(res);
         }
       })
       .catch((error) => {
         console.error("Error al obtener la informacion del usuario", error);
       });
   };
+  const fetchInicialCards = () => {
+    api.getInitialCards().then((res) => {
+      if (Array.isArray(res)) {
+        setCurrentCard(res);
+      }
+    });
+  };
+
+  useEffect(() => {
+    fetchInicialCards();
+  }, []);
 
   useEffect(() => {
     fetchUserInfo();
@@ -54,7 +64,7 @@ function App() {
 
   return (
     <div className="body">
-      <CurrentUserContext.Provider value={currentUser}>
+      <CurrentUserContext.Provider value={{ currentUser, currentCard }}>
         <Header />
         <Main
           onEditProfileClick={handleEditProfileClick}
