@@ -14,7 +14,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState(false);
   const [currentUser, setCurrentUser] = useState();
 
-  const fechUserInfo = () => {
+  const fetchUserInfo = () => {
     api
       .getUserInfo()
       .then((res) => {
@@ -28,7 +28,7 @@ function App() {
       });
   };
   useEffect(() => {
-    fechUserInfo();
+    fetchUserInfo();
   }, []);
 
   const handleEditAvatarClick = () => {
