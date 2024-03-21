@@ -1,5 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import CurrentUserContext from "./contexts/CurrentUserContext";
+
 function Card({ card, onCardClick }) {
+  const { currentUser } = useContext(CurrentUserContext);
+  // const isOwn = card.owner._id === currentUser._id;
+  // const cardDeleteButtonClassName = `button__delete ${
+  //   isOwn ? "button button__delete" : "button__delete_visible"
+  // }`;
+
   return (
     <div key={card._id} className="card">
       <img

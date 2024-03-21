@@ -10,27 +10,9 @@ function Main({
   onAddPlaceClick,
   onCardClick,
 }) {
-  // const [userName, setUserName] = useState("");
-  // const [userDescription, setUserDescription] = useState("");
-  // const [userAvatar, setUserAvatar] = useState("");
   const [useCards, setCards] = useState([]);
 
   const currentUser = useContext(CurrentUserContext);
-
-  // const fetchUserInfo = () => {
-  //   api
-  //     .getUserInfo()
-  //     .then((res) => {
-  //       if (res) {
-  //         setUserName(res?.name);
-  //         setUserDescription(res?.about);
-  //         setUserAvatar(res?.avatar);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("Failed to fetch user info:", error);
-  //     });
-  // };
 
   const fetchInitialCards = () => {
     api
@@ -38,6 +20,7 @@ function Main({
       .then((res) => {
         if (Array.isArray(res)) {
           setCards(res);
+          console.log(res);
         }
       })
       .catch((error) => {
@@ -45,9 +28,6 @@ function Main({
       });
   };
 
-  // useEffect(() => {
-  //   fetchUserInfo();
-  // }, []);
   useEffect(() => {
     fetchInitialCards();
   }, []);
