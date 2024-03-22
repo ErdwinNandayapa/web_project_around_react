@@ -20,6 +20,13 @@ class Api {
   getUserInfo() {
     return this._fetch(`${this.baseUrl}/users/me`, { headers: this.headers });
   }
+  likeCard(id, isLiked) {
+    const method = isLiked ? "DELETE" : "PUT";
+    return this._fetch(`${this.baseUrl}/cards/likes/${id}`, {
+      method: method,
+      headers: this.headers,
+    });
+  }
 }
 
 export const api = new Api("https://around.nomoreparties.co/v1/web_es_12/", {

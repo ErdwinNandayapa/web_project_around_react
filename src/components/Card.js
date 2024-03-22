@@ -11,8 +11,6 @@ function Card({ card, onCardClick }) {
     isLiked ? "button button__type-like" : "button__like_visible"
   } `;
 
-  console.log(isLiked);
-
   return (
     <div key={card._id} className="card">
       <img

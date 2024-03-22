@@ -13,7 +13,6 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const [currentCard, setCurrentCard] = useState([]);
 
   const fetchUserInfo = () => {
     api
@@ -27,17 +26,6 @@ function App() {
         console.error("Error al obtener la informacion del usuario", error);
       });
   };
-  const fetchInicialCards = () => {
-    api.getInitialCards().then((res) => {
-      if (Array.isArray(res)) {
-        setCurrentCard(res);
-      }
-    });
-  };
-
-  useEffect(() => {
-    fetchInicialCards();
-  }, []);
 
   useEffect(() => {
     fetchUserInfo();
@@ -64,7 +52,7 @@ function App() {
 
   return (
     <div className="body">
-      <CurrentUserContext.Provider value={{ currentUser, currentCard }}>
+      <CurrentUserContext.Provider value={{ currentUser }}>
         <Header />
         <Main
           onEditProfileClick={handleEditProfileClick}
