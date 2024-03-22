@@ -10,8 +10,20 @@ function Main({
   onAddPlaceClick,
   onCardClick,
 }) {
-  const [useCards, setCards] = useState([]);
+  const [cards, setCards] = useState([]);
   const { currentUser } = useContext(CurrentUserContext);
+
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    api
+      .likeCard(card._id, isLiked)
+      .then((res) => {
+        setCards((state) => state.map((c) => (c._id === card._id ? res : c)));
+      })
+      .catch((error) => {
+        console.error("error", error);
+      });
+  }
 
   const fetchInitialCards = () => {
     api
@@ -60,8 +72,13 @@ function Main({
         ></button>
       </section>
       <section className="cards">
-        {useCards.map((card) => (
-          <Card key={card._id} card={card} onCardClick={onCardClick} />
+        {cards.map((card) => (
+          <Card
+            key={card._id}
+            card={card}
+            onCardClick={onCardClick}
+            onCardLike={handleCardLike}
+          />
         ))}
       </section>
     </main>
