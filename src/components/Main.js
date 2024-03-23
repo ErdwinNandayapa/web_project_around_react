@@ -25,6 +25,17 @@ function Main({
       });
   }
 
+  function handleCardDelete(card) {
+    api
+      .deleteCard(card._id)
+      .then((res) => {
+        setCards((state) => state.filter((c) => c._id !== card._id));
+      })
+      .catch((error) => {
+        console.error("error al eliminar la carta", error);
+      });
+  }
+
   const fetchInitialCards = () => {
     api
       .getInitialCards()
@@ -78,6 +89,7 @@ function Main({
             card={card}
             onCardClick={onCardClick}
             onCardLike={handleCardLike}
+            onCardDelete={handleCardDelete}
           />
         ))}
       </section>
