@@ -6,6 +6,7 @@ import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import { api } from "../utils/Api";
 import CurrentUserContext from "./contexts/CurrentUserContext";
+import EditProfilePopup from "./EditProfilePopup";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -56,36 +57,11 @@ function App() {
           onCardClick={handleCardClick}
         />
         <Footer />
-        <PopupWithForm
-          name="edit"
-          title="Editar perfil"
-          buttonName="Save"
+        <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
-        >
-          <input
-            type="text"
-            name="input-name"
-            id="input-name"
-            required
-            minLength="2"
-            maxLength="40"
-            className="popup__input popup__input-name"
-            placeholder="Name"
-          />
-          <p className="popup__input-span" id="input-name-error"></p>
-          <input
-            type="text"
-            name="input-job"
-            id="input-job"
-            className="popup__input popup__input-profesion"
-            placeholder="Profession"
-            required
-            minLength="2"
-            maxLength="200"
-          />
-          <p className="popup__error-profesion" id="input-job-error"></p>
-        </PopupWithForm>
+        />
+
         <PopupWithForm
           name="add"
           title="Nuevo lugar"
