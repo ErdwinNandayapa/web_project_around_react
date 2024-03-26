@@ -15,38 +15,23 @@ function Main({
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
-    api
-      .likeCard(card._id, isLiked)
-      .then((res) => {
-        setCards((state) => state.map((c) => (c._id === card._id ? res : c)));
-      })
-      .catch((error) => {
-        console.error("error", error);
-      });
+    api.likeCard(card._id, isLiked).then((res) => {
+      setCards((state) => state.map((c) => (c._id === card._id ? res : c)));
+    });
   }
 
   function handleCardDelete(card) {
-    api
-      .deleteCard(card._id)
-      .then((res) => {
-        setCards((state) => state.filter((c) => c._id !== card._id));
-      })
-      .catch((error) => {
-        console.error("error al eliminar la carta", error);
-      });
+    api.deleteCard(card._id).then((res) => {
+      setCards((state) => state.filter((c) => c._id !== card._id));
+    });
   }
 
   const fetchInitialCards = () => {
-    api
-      .getInitialCards()
-      .then((res) => {
-        if (Array.isArray(res)) {
-          setCards(res);
-        }
-      })
-      .catch((error) => {
-        console.error("Failed to fetch initial cards:", error);
-      });
+    api.getInitialCards().then((res) => {
+      if (Array.isArray(res)) {
+        setCards(res);
+      }
+    });
   };
 
   useEffect(() => {

@@ -15,16 +15,11 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
 
   const fetchUserInfo = () => {
-    api
-      .getUserInfo()
-      .then((res) => {
-        if (res) {
-          setCurrentUser(res);
-        }
-      })
-      .catch((error) => {
-        console.error("Error al obtener la informacion del usuario", error);
-      });
+    api.getUserInfo().then((res) => {
+      if (res) {
+        setCurrentUser(res);
+      }
+    });
   };
 
   useEffect(() => {
