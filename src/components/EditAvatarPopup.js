@@ -7,7 +7,6 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
   const hadleSubmit = (event) => {
     event.preventDefault();
     onUpdateAvatar(inputRef.current.value);
-    console.log(inputRef.current.value);
   };
 
   return (
