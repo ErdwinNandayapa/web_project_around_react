@@ -43,11 +43,6 @@ class Api {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ name, about }),
-    }).then((response) => {
-      if (!response) {
-        throw new Error("No data returned from updateUserInfo");
-      }
-      return response;
     });
   }
 }
