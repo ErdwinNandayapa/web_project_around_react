@@ -1,11 +1,12 @@
 import React, { useRef } from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function EditAvatarPopup({ isOpen, onClose }) {
+function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
   const inputRef = useRef();
 
   const hadleSubmit = (event) => {
     event.preventDefault();
+    onUpdateAvatar(inputRef.current.value);
     console.log(inputRef.current.value);
   };
 

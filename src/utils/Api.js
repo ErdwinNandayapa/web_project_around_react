@@ -45,6 +45,16 @@ class Api {
       body: JSON.stringify({ name, about }),
     });
   }
+  updateAvatar(link) {
+    return this._fetch(`${this.baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: {
+        ...this.headers,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ avatar: link }),
+    });
+  }
 }
 
 export const api = new Api("https://around.nomoreparties.co/v1/web_es_12/", {

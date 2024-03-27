@@ -26,7 +26,14 @@ function App() {
   const handleUpdateUser = ({ name, about }) => {
     api.updateUserInfo({ name, about }).then((newUserData) => {
       setCurrentUser(newUserData);
+
       setIsEditProfilePopupOpen(false);
+    });
+  };
+  const handleUpdateAvatar = (newAvatar) => {
+    api.updateAvatar(newAvatar).then((updatedUser) => {
+      setCurrentUser(updatedUser);
+      setIsEditAvatarPopupOpen(false);
     });
   };
 
@@ -72,6 +79,7 @@ function App() {
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
+          onUpdateAvatar={handleUpdateAvatar}
         />
 
         <PopupWithForm
