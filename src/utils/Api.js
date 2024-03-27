@@ -34,6 +34,22 @@ class Api {
       headers: this.headers,
     });
   }
+
+  updateUserInfo({ name, about }) {
+    return this._fetch(`${this.baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: {
+        ...this.headers,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, about }),
+    }).then((response) => {
+      if (!response) {
+        throw new Error("No data returned from updateUserInfo");
+      }
+      return response;
+    });
+  }
 }
 
 export const api = new Api("https://around.nomoreparties.co/v1/web_es_12/", {

@@ -22,6 +22,13 @@ function App() {
       }
     });
   };
+  const handleUpdateUser = ({ name, about }) => {
+    api.updateUserInfo({ name, about }).then((newUserData) => {
+      setCurrentUser(newUserData);
+      console.log(newUserData);
+      setIsEditProfilePopupOpen(false);
+    });
+  };
 
   useEffect(() => {
     fetchUserInfo();
@@ -60,6 +67,7 @@ function App() {
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
+          onUpdateUser={handleUpdateUser}
         />
 
         <PopupWithForm
