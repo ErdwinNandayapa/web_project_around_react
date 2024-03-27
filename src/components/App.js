@@ -7,6 +7,7 @@ import ImagePopup from "./ImagePopup";
 import { api } from "../utils/Api";
 import CurrentUserContext from "./contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -25,7 +26,6 @@ function App() {
   const handleUpdateUser = ({ name, about }) => {
     api.updateUserInfo({ name, about }).then((newUserData) => {
       setCurrentUser(newUserData);
-      console.log(newUserData);
       setIsEditProfilePopupOpen(false);
     });
   };
@@ -69,6 +69,10 @@ function App() {
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
         />
+        <EditAvatarPopup
+          isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
+        />
 
         <PopupWithForm
           name="add"
@@ -99,27 +103,6 @@ function App() {
           <p className="popup__error-profesion" id="input-jobimg-error"></p>
         </PopupWithForm>
 
-        <PopupWithForm
-          name="avatar"
-          title="Actualizar foto de perfil"
-          content=" popup__content-Conf"
-          container="popup__containerAvatar"
-          form="popup__form-avatar"
-          filset="popup__fieldsetA"
-          buttonName="Save"
-          isOpen={isEditAvatarPopupOpen}
-          onClose={closeAllPopups}
-        >
-          <input
-            type="url"
-            name="input-url"
-            id="input-jobimgavatar"
-            className="popup__input popup__input-profesion popup__input-linkadd popup__input-avatar"
-            placeholder="Image link"
-            required
-          />
-          <p className="popup__error" id="input-jobimgavatar-error"></p>
-        </PopupWithForm>
         <PopupWithForm
           name="confirmacion"
           title="Estás seguro"
