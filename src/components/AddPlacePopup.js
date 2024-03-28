@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function AddPlacePopup({ isOpen, onClose }) {
+function AddPlacePopup({ isOpen, onClose, onAddPlaceSubmit }) {
+  const [name, setName] = useState("");
+  const [link, setLink] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onAddPlaceSubmit({ name, link });
+    setName("");
+    setLink("");
+  };
+
   return (
     <PopupWithForm
       name="add"
@@ -9,6 +19,7 @@ function AddPlacePopup({ isOpen, onClose }) {
       buttonName="Save"
       isOpen={isOpen}
       onClose={onClose}
+      onSubmit={handleSubmit}
     >
       <input
         type="text"
@@ -19,6 +30,8 @@ function AddPlacePopup({ isOpen, onClose }) {
         maxLength="30"
         className="popup__input popup__input-name popup__input-name-add"
         placeholder="Title"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
       />
       <p className="popup__input-span" id="input-nameimg-error"></p>
       <input
@@ -28,6 +41,8 @@ function AddPlacePopup({ isOpen, onClose }) {
         className="popup__input popup__input-profesion popup__input-linkadd"
         placeholder="Image link"
         required
+        value={link}
+        onChange={(e) => setLink(e.target.value)}
       />
       <p className="popup__error-profesion" id="input-jobimg-error"></p>
     </PopupWithForm>

@@ -55,7 +55,7 @@ class Api {
       body: JSON.stringify({ avatar: link }),
     });
   }
-  getNewCards(name, link) {
+  getNewCards({ name, link }) {
     return this._fetch(`${this.baseUrl}/cards`, {
       method: "POST",
       headers: {

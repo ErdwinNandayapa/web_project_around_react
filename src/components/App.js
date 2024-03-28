@@ -64,7 +64,12 @@ function App() {
     });
   };
 
-  const handleAddPlaceSubmit = () => {};
+  const handleAddPlaceSubmit = ({ name, link }) => {
+    api.getNewCards({ name, link }).then((newCard) => {
+      setCards([newCard, ...cards]);
+      setIsAddPlacePopupOpen(false);
+    });
+  };
 
   useEffect(() => {
     fetchUserInfo();
@@ -113,7 +118,11 @@ function App() {
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
         />
-        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+        <AddPlacePopup
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+          onAddPlaceSubmit={handleAddPlaceSubmit}
+        />
         <PopupWithForm
           name="confirmacion"
           title="Estás seguro"
