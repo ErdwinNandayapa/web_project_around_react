@@ -8,6 +8,7 @@ import { api } from "../utils/Api";
 import CurrentUserContext from "./contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
+import AddPlacePopup from "./AddPlacePopup";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -15,6 +16,32 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [cards, setCards] = useState([]);
+
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    api.likeCard(card._id, isLiked).then((res) => {
+      setCards((state) => state.map((c) => (c._id === card._id ? res : c)));
+    });
+  }
+
+  function handleCardDelete(card) {
+    api.deleteCard(card._id).then((res) => {
+      setCards((state) => state.filter((c) => c._id !== card._id));
+    });
+  }
+
+  const fetchInitialCards = () => {
+    api.getInitialCards().then((res) => {
+      if (Array.isArray(res)) {
+        setCards(res);
+      }
+    });
+  };
+
+  useEffect(() => {
+    fetchInitialCards();
+  }, []);
 
   const fetchUserInfo = () => {
     api.getUserInfo().then((res) => {
@@ -36,6 +63,8 @@ function App() {
       setIsEditAvatarPopupOpen(false);
     });
   };
+
+  const handleAddPlaceSubmit = () => {};
 
   useEffect(() => {
     fetchUserInfo();
@@ -69,6 +98,9 @@ function App() {
           onAddPlaceClick={handleAddPlaceClick}
           onEditAvatarClick={handleEditAvatarClick}
           onCardClick={handleCardClick}
+          cards={cards}
+          onCardLike={handleCardLike}
+          onCardDetele={handleCardDelete}
         />
         <Footer />
         <EditProfilePopup
@@ -81,36 +113,7 @@ function App() {
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
         />
-
-        <PopupWithForm
-          name="add"
-          title="Nuevo lugar"
-          buttonName="Save"
-          isOpen={isAddPlacePopupOpen}
-          onClose={closeAllPopups}
-        >
-          <input
-            type="text"
-            name="input-nameadd"
-            id="input-nameimg"
-            required
-            minLength="2"
-            maxLength="30"
-            className="popup__input popup__input-name popup__input-name-add"
-            placeholder="Title"
-          />
-          <p className="popup__input-span" id="input-nameimg-error"></p>
-          <input
-            type="url"
-            name="input-url"
-            id="input-jobimg"
-            className="popup__input popup__input-profesion popup__input-linkadd"
-            placeholder="Image link"
-            required
-          />
-          <p className="popup__error-profesion" id="input-jobimg-error"></p>
-        </PopupWithForm>
-
+        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
         <PopupWithForm
           name="confirmacion"
           title="Estás seguro"

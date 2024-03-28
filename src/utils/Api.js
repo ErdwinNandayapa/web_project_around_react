@@ -55,6 +55,16 @@ class Api {
       body: JSON.stringify({ avatar: link }),
     });
   }
+  getNewCards(name, link) {
+    return this._fetch(`${this.baseUrl}/cards`, {
+      method: "POST",
+      headers: {
+        ...this.headers,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, link }),
+    });
+  }
 }
 
 export const api = new Api("https://around.nomoreparties.co/v1/web_es_12/", {
