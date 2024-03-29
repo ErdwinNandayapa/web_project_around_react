@@ -71,5 +71,4 @@ const api = new Api("https://around.nomoreparties.co/v1/web_es_12/", {
   authorization: "8521445e-72d9-4062-8af0-0d806de221f7",
 });
 
-export default api
-
+export default api;
