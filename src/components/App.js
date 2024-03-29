@@ -4,7 +4,7 @@ import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
-import { api } from "../utils/Api";
+import { api } from "../utils/api";
 import CurrentUserContext from "./contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
@@ -18,7 +18,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
-  const [cardToDelete, setCardToDelete] = useState(null);
+  const [cardToDelete, setCardToDelete] = useState({});
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
