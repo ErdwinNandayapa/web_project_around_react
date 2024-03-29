@@ -14,9 +14,11 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [confirmation, setConfirmation] = useState(false);
   const [selectedCard, setSelectedCard] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
+  const [cardToDelete, setCardToDelete] = useState(null);
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
@@ -26,9 +28,8 @@ function App() {
   }
 
   function handleCardDelete(card) {
-    api.deleteCard(card._id).then((res) => {
-      setCards((state) => state.filter((c) => c._id !== card._id));
-    });
+    setCardToDelete(card);
+    setConfirmation(true);
   }
 
   const fetchInitialCards = () => {
@@ -84,14 +85,25 @@ function App() {
   const handleAddPlaceClick = () => {
     setIsAddPlacePopupOpen(true);
   };
+
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setSelectedCard(false);
+    setConfirmation(false);
   };
   const handleCardClick = (card) => {
     setSelectedCard(card);
+  };
+  const hadleSubmitConfirm = (event) => {
+    event.preventDefault();
+    if (cardToDelete) {
+      api.deleteCard(cardToDelete._id).then(() => {
+        setCards((state) => state.filter((c) => c._id !== cardToDelete._id));
+        closeAllPopups();
+      });
+    }
   };
 
   return (
@@ -131,6 +143,9 @@ function App() {
           form="popup__form-conf"
           buttonName="Si"
           buttonClass="popup__confirm-button"
+          isOpen={confirmation}
+          onClose={closeAllPopups}
+          onSubmit={hadleSubmitConfirm}
         >
           {" "}
         </PopupWithForm>
