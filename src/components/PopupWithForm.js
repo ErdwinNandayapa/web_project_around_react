@@ -12,6 +12,7 @@ function PopupWithForm({
   buttonName,
   buttonClass,
   onClose,
+  onSubmit,
 }) {
   return (
     <div className={`popup popup__${name} ${isOpen ? "popup_open" : ""}`}>
@@ -22,7 +23,10 @@ function PopupWithForm({
             onClick={onClose}
           ></button>
           <span className="popup__title">{title}</span>
-          <form className={`popup__form ${form ? form : ""} `}>
+          <form
+            onSubmit={onSubmit}
+            className={`popup__form ${form ? form : ""} `}
+          >
             <fieldset className={`popup__fieldset ${filset ? filset : ""} `}>
               {children}
             </fieldset>

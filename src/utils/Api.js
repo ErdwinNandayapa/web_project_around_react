@@ -20,6 +20,51 @@ class Api {
   getUserInfo() {
     return this._fetch(`${this.baseUrl}/users/me`, { headers: this.headers });
   }
+  likeCard(id, isLiked) {
+    const method = isLiked ? "DELETE" : "PUT";
+    return this._fetch(`${this.baseUrl}/cards/likes/${id}`, {
+      method: method,
+      headers: this.headers,
+    });
+  }
+
+  deleteCard(id) {
+    return this._fetch(`${this.baseUrl}/cards/${id}`, {
+      method: "DELETE",
+      headers: this.headers,
+    });
+  }
+
+  updateUserInfo({ name, about }) {
+    return this._fetch(`${this.baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: {
+        ...this.headers,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, about }),
+    });
+  }
+  updateAvatar(link) {
+    return this._fetch(`${this.baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: {
+        ...this.headers,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ avatar: link }),
+    });
+  }
+  getNewCards({ name, link }) {
+    return this._fetch(`${this.baseUrl}/cards`, {
+      method: "POST",
+      headers: {
+        ...this.headers,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, link }),
+    });
+  }
 }
 
 export const api = new Api("https://around.nomoreparties.co/v1/web_es_12/", {
