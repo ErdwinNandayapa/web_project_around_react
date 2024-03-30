@@ -70,11 +70,14 @@ function App() {
   };
 
   useEffect(() => {
-    fetchInitialCards().then(() => setIsLoading(false));
-  }, []);
-
-  useEffect(() => {
-    fetchUserInfo().then(() => setIsLoading(false));
+    Promise.all([fetchInitialCards(), fetchUserInfo()])
+      .then(() => {
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setIsLoading(false);
+      });
   }, []);
 
   const handleEditAvatarClick = () => {
