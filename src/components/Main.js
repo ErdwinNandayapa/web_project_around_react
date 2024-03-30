@@ -35,13 +35,13 @@ function Main({
         </div>
         <div className="profile__edit">
           <div className="profile__container">
-            <h1 className="profile__name">{currentUser.name}</h1>{" "}
+            <h1 className="profile__name">{currentUser?.name}</h1>{" "}
             <button
               className="profile__button-edit"
               onClick={onEditProfileClick}
             ></button>
           </div>
-          <p className="profile__profession">{currentUser.about}</p>{" "}
+          <p className="profile__profession">{currentUser?.about}</p>{" "}
         </div>
         <button
           className="profile__button-add"
