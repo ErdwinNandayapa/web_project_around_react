@@ -16,9 +16,10 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [confirmation, setConfirmation] = useState(false);
   const [selectedCard, setSelectedCard] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({ loading: true });
   const [cards, setCards] = useState([]);
   const [cardToDelete, setCardToDelete] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
@@ -33,9 +34,11 @@ function App() {
   }
 
   const fetchInitialCards = () => {
+    setIsLoading(true);
     api.getInitialCards().then((res) => {
       if (Array.isArray(res)) {
         setCards(res);
+        setIsLoading(false);
       }
     });
   };
@@ -47,7 +50,7 @@ function App() {
   const fetchUserInfo = () => {
     api.getUserInfo().then((res) => {
       if (res) {
-        setCurrentUser(res);
+        setCurrentUser({ ...res, loading: false });
       }
     });
   };
@@ -118,6 +121,7 @@ function App() {
           cards={cards}
           onCardLike={handleCardLike}
           onCardDelete={handleCardDelete}
+          onLogin={isLoading}
         />
         <Footer />
         <EditProfilePopup

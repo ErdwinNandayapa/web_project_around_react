@@ -11,16 +11,21 @@ function Main({
   cards,
   onCardLike,
   onCardDelete,
+  onLogin,
 }) {
   const { currentUser } = useContext(CurrentUserContext);
 
-  return (
+  return onLogin ? (
+    <div className="spinner"></div>
+  ) : currentUser.loading ? (
+    <div className="cargando">Cargando perfil del usuario...</div>
+  ) : (
     <main className="container">
       <section className="profile">
         <div className="profile__overlay">
           <img
             className="profile__avatar"
-            src={currentUser?.avatar}
+            src={currentUser.avatar}
             alt="Avatar"
           />{" "}
           <button
