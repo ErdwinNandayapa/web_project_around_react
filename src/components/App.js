@@ -41,10 +41,6 @@ function App() {
     });
   };
 
-  // useEffect(() => {
-  //   fetchInitialCards();
-  // }, []);
-
   const fetchUserInfo = () => {
     return api.getUserInfo().then((res) => {
       if (res) {
@@ -74,14 +70,11 @@ function App() {
   };
 
   useEffect(() => {
-    Promise.all([fetchInitialCards(), fetchUserInfo()])
-      .then(() => {
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching initial data:", error);
-        setIsLoading(false);
-      });
+    fetchInitialCards().then(() => setIsLoading(false));
+  }, []);
+
+  useEffect(() => {
+    fetchUserInfo().then(() => setIsLoading(false));
   }, []);
 
   const handleEditAvatarClick = () => {
