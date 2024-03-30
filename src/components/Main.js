@@ -11,13 +11,10 @@ function Main({
   cards,
   onCardLike,
   onCardDelete,
-  onLogin,
 }) {
   const { currentUser } = useContext(CurrentUserContext);
 
-  return onLogin ? (
-    <div className="spinner"></div>
-  ) : currentUser.loading ? (
+  return currentUser.loading ? (
     <div className="cargando">Cargando perfil del usuario...</div>
   ) : (
     <main className="container">

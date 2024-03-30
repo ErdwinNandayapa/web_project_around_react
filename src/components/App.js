@@ -34,21 +34,19 @@ function App() {
   }
 
   const fetchInitialCards = () => {
-    setIsLoading(true);
-    api.getInitialCards().then((res) => {
+    return api.getInitialCards().then((res) => {
       if (Array.isArray(res)) {
         setCards(res);
-        setIsLoading(false);
       }
     });
   };
 
-  useEffect(() => {
-    fetchInitialCards();
-  }, []);
+  // useEffect(() => {
+  //   fetchInitialCards();
+  // }, []);
 
   const fetchUserInfo = () => {
-    api.getUserInfo().then((res) => {
+    return api.getUserInfo().then((res) => {
       if (res) {
         setCurrentUser({ ...res, loading: false });
       }
@@ -76,7 +74,14 @@ function App() {
   };
 
   useEffect(() => {
-    fetchUserInfo();
+    Promise.all([fetchInitialCards(), fetchUserInfo()])
+      .then(() => {
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching initial data:", error);
+        setIsLoading(false);
+      });
   }, []);
 
   const handleEditAvatarClick = () => {
@@ -109,7 +114,9 @@ function App() {
     }
   };
 
-  return (
+  return isLoading ? (
+    <div className="spinner"></div>
+  ) : (
     <div className="body">
       <CurrentUserContext.Provider value={{ currentUser }}>
         <Header />
@@ -121,7 +128,6 @@ function App() {
           cards={cards}
           onCardLike={handleCardLike}
           onCardDelete={handleCardDelete}
-          onLogin={isLoading}
         />
         <Footer />
         <EditProfilePopup
