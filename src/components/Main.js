@@ -14,9 +14,7 @@ function Main({
 }) {
   const { currentUser } = useContext(CurrentUserContext);
 
-  return currentUser.loading ? (
-    <div className="cargando">Cargando perfil del usuario...</div>
-  ) : (
+  return (
     <main className="container">
       <section className="profile">
         <div className="profile__overlay">
