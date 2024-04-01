@@ -12,7 +12,7 @@ class Api {
         } else {
           return Promise.reject(`ERROR: ${res.status}`);
         }
-      });
+      }).catch((error) =>Promise.reject(error))
   }
 
   getInitialCards() {
