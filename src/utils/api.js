@@ -7,10 +7,12 @@ class Api {
   _fetch(url, options = {}) {
     return fetch(url, options)
       .then((res) => {
-        if (!res.ok) throw new Error(`Server error: ${res.status}`);
-        return res.json();
-      })
-      .catch((error) => console.error("Error:", error));
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject(`ERROR: ${res.status}`);
+        }
+      });
   }
 
   getInitialCards() {
@@ -39,8 +41,7 @@ class Api {
     return this._fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
-        ...this.headers,
-        "Content-Type": "application/json",
+        ...this.headers,       
       },
       body: JSON.stringify({ name, about }),
     });
@@ -49,8 +50,7 @@ class Api {
     return this._fetch(`${this.baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: {
-        ...this.headers,
-        "Content-Type": "application/json",
+        ...this.headers,       
       },
       body: JSON.stringify({ avatar: link }),
     });
@@ -59,8 +59,7 @@ class Api {
     return this._fetch(`${this.baseUrl}/cards`, {
       method: "POST",
       headers: {
-        ...this.headers,
-        "Content-Type": "application/json",
+        ...this.headers,       
       },
       body: JSON.stringify({ name, link }),
     });
@@ -69,6 +68,7 @@ class Api {
 
 const api = new Api("https://around.nomoreparties.co/v1/web_es_12/", {
   authorization: "8521445e-72d9-4062-8af0-0d806de221f7",
+  "Content-Type": "application/json",
 });
 
 export default api;
